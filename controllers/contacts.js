@@ -1,24 +1,24 @@
-const comments = require("../data/comments");
+const contacts = require("../data/contacts");
 
 const list = (req, res) => {
-  res.json(comments);
+  res.json(contacts);
 };
 
 const show = (req, res) => {
-  res.json(comments.find((comment) => comment._id == req.params.id))
+  res.json(contacts.find((contact) => contact._id == req.params.id));
 };
 
 const create = (req, res) => {
   let payload = req.body;
   payload._id = 1;
 
-  comments.map(item => {
-    item._id += 1
-  })
+  contacts.map((item) => {
+    item._id += 1;
+  });
 
-  comments.push(payload);
+  contacts.push(payload);
 
-  res.send(comments);
+  res.send(contacts);
 };
 
 module.exports = { list, show, create };
